@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Files Browsing</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            background-color: #f4f4f4;
+        }
+        h2 {
+            color: #333;
+            text-align: center;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .directory-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .directory-item {
+            margin: 10px;
+            text-align: center;
+            width: 200px;
+        }
+        .directory-image {
+            width: 200px;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 5px;
+            transition: transform 0.3s ease;
+        }
+        .directory-image:hover {
+            transform: scale(1.05);
+        }
+        .directory-item a {
+            text-decoration: none;
+            color: #333;
+        }
+        .directory-item p {
+            margin-top: 10px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Files Browsing</h2>
+        
+        <div class="directory-container">
+            {% for subdir in subdirectories %}
+                <div class="directory-item">
+                    <a href="{{ url_for('index', root_path=root_path, sub_path=subdir) }}">
+                        <img src="{{ url_for('index', root_path=icon_path, sub_path=images[subdir]) }}" alt="{{ subdir }}" class="directory-image">  <!-- Update to access images -->
+                        <p>{{ subdir }}</p>
+                    </a>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>

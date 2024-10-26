@@ -1,0 +1,17 @@
+services:
+  python:
+    image: python:${PYTHON_VERSION}
+    container_name: python-${PYTHON_VERSION}
+    build:
+      context: .
+      args:
+        PYTHON_VERSION: ${PYTHON_VERSION}
+    networks:
+      - demo
+    ports:
+      - "9000:80"
+    volumes:
+      - ./app:/app
+      
+networks:
+  demo:
